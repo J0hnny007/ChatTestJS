@@ -1,5 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser')
 
 var app = express();
 
@@ -11,13 +12,8 @@ app.use(express.static(__dirname));
 
 var dbUrl = ''
 
-mongoose.connect(dbUrl, (err) => {
-    console.log('mongodb connected', err);
-})
-
 var Message = mongoose.model('Message', { name: String, message: String })
 
-var bodyParser = require('body-parser')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 
